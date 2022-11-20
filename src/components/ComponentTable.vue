@@ -36,7 +36,7 @@ const heightAutoTable = computed(() => {
   >
     <v-card-text>
       <v-container fluid>
-        <v-row dense>
+        <v-row>
           <v-col
             v-for="character of characters"
             :key="character.id"

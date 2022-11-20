@@ -1,50 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useAppStore } from "../stores/app";
 import Table from "@/components/ComponentTable.vue";
 
-const array = ref([
-  {
-    name: "Mrs. Pancakes",
-    status: "Alive",
-    species: "Human",
-    location: "Mr. Goldenfold's dream",
-    episode: "Lawnmower Dog",
-    image: "https://rickandmortyapi.com/api/character/avatar/246.jpeg",
-  },
-  {
-    name: "Mrs. Pancakes",
-    status: "Alive",
-    species: "Human",
-    location: "Mr. Goldenfold's dream",
-    episode: "Lawnmower Dog",
-    image: "https://rickandmortyapi.com/api/character/avatar/246.jpeg",
-  },
-  {
-    name: "Mrs. Pancakes",
-    status: "Alive",
-    species: "Human",
-    location: "Mr. Goldenfold's dream",
-    episode: "Lawnmower Dog",
-    image: "https://rickandmortyapi.com/api/character/avatar/246.jpeg",
-  },
-  {
-    name: "Mrs. Pancakes",
-    status: "Alive",
-    species: "Human",
-    location: "Mr. Goldenfold's dream",
-    episode: "Lawnmower Dog",
-    image: "https://rickandmortyapi.com/api/character/avatar/246.jpeg",
-  },
-  {
-    name: "Mrs. Pancakes",
-    status: "Alive",
-    species: "Human",
-    location: "Mr. Goldenfold's dream",
-    episode: "Lawnmower Dog",
-    image: "https://rickandmortyapi.com/api/character/avatar/246.jpeg",
-  },
-]);
 const search = ref("");
+const store = useAppStore();
+
+onMounted(() => {
+  store.getCharacters();
+});
 </script>
 <template>
   <v-row class="my-4" justify="center">
@@ -60,5 +24,5 @@ const search = ref("");
       />
     </v-col>
   </v-row>
-  <Table :characters="array" height-auto />
+  <Table :characters="store.characters" height-auto />
 </template>
