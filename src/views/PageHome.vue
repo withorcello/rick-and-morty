@@ -19,10 +19,19 @@ onMounted(() => {
         density="comfortable"
         placeholder="Character"
         hide-details
-        prepend-inner-icon="mdi-magnify"
+        append-inner-icon="mdi-magnify"
         variant="outlined"
+        @click:append-inner="store.getCharacters()"
       />
     </v-col>
   </v-row>
-  <Table :characters="store.characters" height-auto />
+  <Table
+    :characters="store.characters"
+    :pagination="store.pagination"
+    height-auto
+    @nextPage="store.getCharacters(store.pagination.next)"
+    @prevPage="store.getCharacters(store.pagination.prev)"
+    @firstPage="store.getCharacters(1)"
+    @lastPage="store.getCharacters(store.pagination.pages)"
+  />
 </template>

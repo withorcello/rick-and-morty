@@ -4,10 +4,22 @@ import axios from "axios";
 
 export const useAppStore = defineStore("characters", () => {
   const characters = ref([]);
+  const pagination = ref({
+    current: null,
+    next: null,
+    pages: null,
+    prev: null,
+  });
 
-  async function getCharacters() {
+  async function getCharacters(page) {
     try {
-      const res = await axios.get("https://rickandmortyapi.com/api/character");
+      console.log(page);
+      const res = await axios.get(
+        "https://rickandmortyapi.com/api/character/",
+        {
+          params: { page },
+        }
+      );
 
       if (res.data && !(res instanceof Error)) {
         const { results, info } = res.data;
@@ -22,11 +34,20 @@ export const useAppStore = defineStore("characters", () => {
           species: el.species,
           status: el.status,
         }));
+
+        const next = info.next?.replace(/\D/g, "");
+        const prev = info.prev?.replace(/\D/g, "");
+        pagination.value = {
+          current: (prev && +prev + 1) || (next && +next - 1),
+          pages: info.pages,
+          next,
+          prev,
+        };
       }
     } catch (error) {
       return error;
     }
   }
 
-  return { characters, getCharacters };
+  return { characters, getCharacters, pagination };
 });
