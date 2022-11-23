@@ -21,7 +21,7 @@ const options = {
           primary: "#23D962",
           secondary: "#36593E",
           accent: "#628C4F",
-          error: "#b71c1c",
+          error: "#FF0033",
         },
       },
     },
