@@ -29,7 +29,6 @@ const props = defineProps({
 });
 
 const statusColor = computed(() => {
-  console.log(props.status);
   if (props.status === "Alive") return "primary";
   else if (props.status === "Dead") return "error";
   else return "grey";

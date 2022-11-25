@@ -1,5 +1,8 @@
 <script setup>
 import { RouterView } from "vue-router";
+import ComponentLoading from "./components/ComponentLoading.vue";
+import { useAppStore } from "./stores/app";
+const store = useAppStore();
 </script>
 
 <template>
@@ -16,6 +19,7 @@ import { RouterView } from "vue-router";
       </span>
     </v-app-bar>
     <v-main>
+      <ComponentLoading v-model="store.loading" />
       <RouterView />
     </v-main>
   </v-app>

@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 
 export const useAppStore = defineStore("characters", () => {
+  const loading = ref(false);
   const characters = ref([]);
   const pagination = ref({
     current: null,
@@ -13,7 +14,8 @@ export const useAppStore = defineStore("characters", () => {
 
   async function getCharacters(page) {
     try {
-      console.log(page);
+      loading.value = true;
+
       const res = await axios.get(
         "https://rickandmortyapi.com/api/character/",
         {
@@ -44,10 +46,12 @@ export const useAppStore = defineStore("characters", () => {
           prev,
         };
       }
+
+      loading.value = false;
     } catch (error) {
       return error;
     }
   }
 
-  return { characters, getCharacters, pagination };
+  return { characters, getCharacters, pagination, loading };
 });
