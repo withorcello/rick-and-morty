@@ -93,7 +93,7 @@ const heightAutoTable = computed(() => {
   >
     <v-card-text class="px-2 py-0">
       <v-container fluid>
-        <v-row>
+        <v-row justify="center">
           <v-col
             v-for="character of characters"
             :key="character.id"
@@ -111,6 +111,16 @@ const heightAutoTable = computed(() => {
               :location="character.location"
               :origin="character.origin"
             />
+          </v-col>
+          <v-col v-if="!characters.length" cols="auto">
+            <v-alert
+              class="text-h6 mt-16"
+              color="white"
+              type="info"
+              variant="tonal"
+            >
+              There are no records!
+            </v-alert>
           </v-col>
         </v-row>
       </v-container>
