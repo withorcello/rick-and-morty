@@ -7,16 +7,15 @@ const store = useAppStore();
 
 <template>
   <v-app>
-    <v-app-bar flat class="bg-background px-4">
-      <v-icon color="primary" size="x-large" @click="$router.push('/')">
-        mdi-atom
-      </v-icon>
-      <span
-        class="mx-2 text-h5 font-weight-bold text-grey-lighten-2"
-        @click="$router.push('/')"
-      >
-        Rick and Morty
-      </span>
+    <v-app-bar flat class="bg-background">
+      <v-btn variant="plain" @click="$router.push('/')">
+        <v-icon color="primary" size="x-large">
+          mdi-atom
+        </v-icon>
+        <span class="mx-2 text-h5 font-weight-bold text-grey-lighten-2">
+          Rick and Morty
+        </span>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <ComponentLoading v-model="store.loading" />
